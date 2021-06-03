@@ -88,9 +88,9 @@ public class VaccinationFragment extends Fragment{
                 builder.setView(input);
 
                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                SharedPreferences.Editor prefEdit = pref.edit();
-                prefEdit.putString("text", textView.getText().toString());
-                prefEdit.commit();
+                SharedPreferences.Editor prefEditVaccination = pref.edit();
+                prefEditVaccination.putString("textVaccination", textView.getText().toString());
+                prefEditVaccination.commit();
 
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -127,6 +127,5 @@ public class VaccinationFragment extends Fragment{
         SharedPreferences.Editor prefEdit = pref.edit();
         prefEdit.putString("text", strText);
         prefEdit.commit();
-
     }
 }
