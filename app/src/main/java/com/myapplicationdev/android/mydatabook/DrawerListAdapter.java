@@ -52,7 +52,6 @@ public class DrawerListAdapter<S> extends ArrayAdapter<String> {
 
         }
 
-
         return rowView;
     }
 }
