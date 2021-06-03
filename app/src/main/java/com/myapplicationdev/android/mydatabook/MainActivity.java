@@ -16,12 +16,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private String[] drawerItems;
     private DrawerLayout drawerLayout;
     private ListView drawerList;
-    ArrayAdapter<String> aa;
+    DrawerListAdapter<String> aa;
     String currentTitle;
     ActionBar ab;
 
@@ -38,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         drawerItems = new String[]{"Bio", "Vaccination", "Anniversary","About Us"};
         ab = getSupportActionBar();
 
-        aa = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_activated_1, drawerItems);
+        aa = new DrawerListAdapter<String>(this,
+                R.layout.row, drawerItems);
         drawerList.setAdapter(aa);
 
         // Set the list's click listener
