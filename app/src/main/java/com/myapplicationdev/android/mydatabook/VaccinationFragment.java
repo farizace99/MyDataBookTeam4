@@ -80,7 +80,7 @@ public class VaccinationFragment extends Fragment{
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setCancelable(false);
 
-                builder.setTitle("Edit Bio");
+                builder.setTitle("Edit Vaccination");
 
                 // Create TextView
                 final EditText input = new EditText(getActivity());

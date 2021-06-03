@@ -77,7 +77,7 @@ public class AnniversaryFragment extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setCancelable(false);
 
-                builder.setTitle("Edit Bio");
+                builder.setTitle("Edit Anniversary");
 
                 // Create TextView
                 final EditText input = new EditText (getActivity());
