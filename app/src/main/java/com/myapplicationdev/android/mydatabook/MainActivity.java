@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerListAdapter<String> aa;
     String currentTitle;
     ActionBar ab;
+    FloatingActionButton fab;
 
     private ActionBarDrawerToggle drawerToggle;
 
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fab = findViewById(R.id.fab);
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerList = findViewById(R.id.left_drawer);
 
@@ -58,12 +63,18 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new AnniversaryFragment();
 
 
+                if (position <= 2) {
+                    FragmentManager fm = getSupportFragmentManager();
+                    FragmentTransaction trans = fm.beginTransaction();
+                    //Placing the Fragment into the FrameLayout
+                    trans.replace(R.id.content_frame, fragment);
+                    trans.commit();
 
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction trans = fm.beginTransaction();
-                //Placing the Fragment into the FrameLayout
-                trans.replace(R.id.content_frame, fragment);
-                trans.commit();
+                }else{
+                    Intent intent = new Intent(MainActivity.this,AboutActivity.class);
+                    startActivity(intent);
+                }
+
 
                 // Highlight the selected item,
                 //  update the title, and close the drawer
@@ -98,6 +109,13 @@ public class MainActivity extends AppCompatActivity {
 // Set the drawer toggle as the DrawerListener
         drawerLayout.addDrawerListener(drawerToggle);
         ab.setDisplayHomeAsUpEnabled(true);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(drawerList);
+            }
+        });
     }
 
     @Override
