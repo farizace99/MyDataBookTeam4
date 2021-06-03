@@ -1,13 +1,18 @@
 package com.myapplicationdev.android.mydatabook;
 
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -69,9 +74,53 @@ public class AnniversaryFragment extends Fragment {
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setCancelable(false);
+
+                builder.setTitle("Edit Bio");
+
+                // Create TextView
+                final EditText input = new EditText (getActivity());
+                input.setText(textView.getText());
+                builder.setView(input);
+
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                SharedPreferences.Editor prefEdit = pref.edit();
+                prefEdit.putString("text",textView.getText().toString());
+                prefEdit.commit();
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        textView.setText(input.getText());
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // Canceled.
+                    }
+                });
+                builder.show();
             }
         });
         return view;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String strText = prefs.getString("text", "");
+        textView.setText(strText);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //Get the user input and store in a variable called strName
+        String strText = textView.getText().toString();
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor prefEdit = pref.edit();
+        prefEdit.putString("text", strText);
+        prefEdit.commit();
     }
 }
