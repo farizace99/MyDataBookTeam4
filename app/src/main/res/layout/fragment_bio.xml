@@ -8,13 +8,15 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello Bio Black Fragment" />
+        android:layout_width="match_parent"
+        android:layout_height="630dp"
+        android:textColor="@color/black"
+        android:id="@+id/textView"/>
 
     <Button
         android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
         android:text="EDIT" />
 </LinearLayout>
