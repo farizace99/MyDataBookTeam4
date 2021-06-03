@@ -85,10 +85,10 @@ public class BioFragment extends Fragment {
                 input.setText(textView.getText());
                 builder.setView(input);
 
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                SharedPreferences.Editor prefEdit = pref.edit();
-                prefEdit.putString("text",textView.getText().toString());
-                prefEdit.commit();
+                SharedPreferences prefBio = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                SharedPreferences.Editor prefEditBio = prefBio.edit();
+                prefEditBio.putString("textBio",textView.getText().toString());
+                prefEditBio.commit();
 
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -110,8 +110,8 @@ public class BioFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String strText = prefs.getString("text", "");
+        SharedPreferences prefsBio = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String strText = prefsBio.getString("textBio", "");
         textView.setText(strText);
     }
 
@@ -120,9 +120,9 @@ public class BioFragment extends Fragment {
         super.onPause();
         //Get the user input and store in a variable called strName
         String strText = textView.getText().toString();
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        SharedPreferences.Editor prefEdit = pref.edit();
-        prefEdit.putString("text", strText);
-        prefEdit.commit();
+        SharedPreferences prefBio = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor prefEditBio = prefBio.edit();
+        prefEditBio.putString("textBio", strText);
+        prefEditBio.commit();
     }
 }

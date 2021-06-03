@@ -84,10 +84,10 @@ public class AnniversaryFragment extends Fragment {
                 input.setText(textView.getText());
                 builder.setView(input);
 
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                SharedPreferences.Editor prefEdit = pref.edit();
-                prefEdit.putString("text",textView.getText().toString());
-                prefEdit.commit();
+                SharedPreferences prefAnni = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                SharedPreferences.Editor prefEditAnni = prefAnni.edit();
+                prefEditAnni.putString("textAnni",textView.getText().toString());
+                prefEditAnni.commit();
 
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -108,8 +108,8 @@ public class AnniversaryFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String strText = prefs.getString("text", "");
+        SharedPreferences prefsAnni = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String strText = prefsAnni.getString("textAnni", "");
         textView.setText(strText);
     }
 
@@ -118,9 +118,9 @@ public class AnniversaryFragment extends Fragment {
         super.onPause();
         //Get the user input and store in a variable called strName
         String strText = textView.getText().toString();
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        SharedPreferences.Editor prefEdit = pref.edit();
-        prefEdit.putString("text", strText);
-        prefEdit.commit();
+        SharedPreferences prefAnni = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor prefEditAnni = prefAnni.edit();
+        prefEditAnni.putString("textAnni", strText);
+        prefEditAnni.commit();
     }
 }
