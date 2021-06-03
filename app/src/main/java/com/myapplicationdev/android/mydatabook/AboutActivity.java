@@ -25,13 +25,12 @@ public class AboutActivity extends AppCompatActivity {
 
         String url = "https://upload.wikimedia.org/wikipedia/commons/8/80/Republic_Polytechnic_Logo.jpg";
 
-        AnimationDrawable ph = (AnimationDrawable) ContextCompat.getDrawable(AboutActivity.this, R.drawable.ajax_loader);
-        ph.start();
+        
 
 
         Glide.with(AboutActivity.this)
                 .load(url)
-                .apply(new RequestOptions().placeholder(ph).error(R.drawable.error))
+                .apply(new RequestOptions().placeholder(R.drawable.ajax_loader).error(R.drawable.error))
                 .into(iv);
 
         iv.setOnClickListener(new View.OnClickListener() {
