@@ -9,9 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyDataBook">
-        <activity android:name=".VaccinationDialog"></activity>
-        <activity android:name=".BioDialog" />
-        <activity android:name=".AnniversaryDialog" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
